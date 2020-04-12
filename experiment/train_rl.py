@@ -14,7 +14,7 @@ import datetime
 import torch
 import numpy as np
 import subprocess
-
+import babyaiPP
 import babyai
 import babyai.utils as utils
 import babyai.rl

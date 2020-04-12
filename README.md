@@ -11,8 +11,8 @@ git clone --recursive https://github.com/caotians1/BabyAIPlusPlus.git
 Install the prerequisites (Anaconda):
 ```bash
 conda install pytorch=0.4.1 torchvision -c pytorch
-conda install pyqt numpy blosc
-pip install gym
+conda install pyqt
+pip install tensorboardX blosc gym
 ```
 Install `gym-minigrid` and `babyai`:
 ```bash
@@ -24,7 +24,7 @@ pip install --no_deps --editable .
 ##Using BabyAI++
 Play a level in BabyAI++:
 ```
-python babyai/scripts/gui --env="BabyAI-Level_GoToObj_Dynamics_Train-v0"
+python experiment/gui.py --env="BabyAI-Level_GoToObj_Dynamics_Train-v0"
 ```
 To train a model in BabyAI++, see `scripts/train_film_agent_redball.sh` and `experiment/train_rl.py`.
  

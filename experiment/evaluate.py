@@ -9,6 +9,7 @@ import gym
 import time
 import datetime
 import math
+import babyaiPP
 import babyai.utils as utils
 from babyai.evaluate import evaluate_demo_agent, batch_evaluate, evaluate
 # Parse arguments
