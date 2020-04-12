@@ -10,9 +10,9 @@ git clone --recursive https://github.com/caotians1/BabyAIPlusPlus.git
 ```
 Install the prerequisites (Anaconda):
 ```bash
-conda install pytorch=0.4.1 torchvision -c pytorch
+conda install pytorch=1.2.0 torchvision -c pytorch
 conda install pyqt
-pip install tensorboardX blosc gym
+pip install lorem tensorboardX blosc gym
 ```
 Install `gym-minigrid` and `babyai`:
 ```bash

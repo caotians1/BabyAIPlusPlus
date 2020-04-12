@@ -1,7 +1,7 @@
 import gym
-from babyai.babyai.levels.verifier import *
-from babyai.babyai.levels.levelgen import register_levels
-from babyai.babyai.levels.iclr19_levels import Level_GoTo
+from babyai.levels.verifier import *
+from babyai.levels.levelgen import register_levels
+from babyai.levels.iclr19_levels import Level_GoTo
 from .decriptive_level_base import DescriptiveLevel
 from .dynamics_levels import DynamicsLevel
 

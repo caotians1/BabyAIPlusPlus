@@ -21,8 +21,8 @@ import babyai.rl
 from babyai.evaluate import batch_evaluate
 from babyai.utils.agent import ModelAgent
 
-from .arguments import ArgumentParser
-from .model import ACModel
+from experiment.arguments import ArgumentParser
+from experiment.model import ACModel
 
 # Parse arguments
 parser = ArgumentParser()

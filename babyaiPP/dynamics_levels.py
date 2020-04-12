@@ -1,7 +1,7 @@
 import gym
-from babyai.babyai.levels.verifier import *
-from babyai.babyai.levels.levelgen import *
-from babyai.babyai.levels.iclr19_levels import *
+from babyai.levels.verifier import *
+from babyai.levels.levelgen import *
+from babyai.levels.iclr19_levels import *
 from gym_minigrid.minigrid import COLOR_NAMES, Floor, DIR_TO_VEC
 from lorem.text import TextLorem
 
