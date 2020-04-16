@@ -1,7 +1,7 @@
 # BabyAI++ : Towards Grounded-Language Learning beyond Memorization
-This is the implementation of our paper "BabyAI++ : Towards Grounded-Language Learning beyond Memorization", accepted 
-to 'Beyond “Tabula Rasa” in Reinforcement Learning (BeTR-RL): Agents that remember, adapt, and generalize' workshop
-at ICLR2020. TODO: add arxiv link
+This is the implementation of our paper "[BabyAI++ : Towards Grounded-Language Learning beyond Memorization](https://arxiv.org/pdf/2004.07200.pdf)", accepted 
+to the ICLR2020 [BeTR-RL workshop](http://www.betr-rl.ml/2020/).
+
 
 ## Getting started
 First, clone this repository to your local device recursively:
@@ -21,7 +21,8 @@ pip install --editable .
 cd ../babyai
 pip install --no_deps --editable .
 ```
-##Using BabyAI++
+
+## Using BabyAI++
 Play a level in BabyAI++:
 ```
 python experiment/gui.py --env="BabyAI-Level_GoToObj_Dynamics_Train-v0"
