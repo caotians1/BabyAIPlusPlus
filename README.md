@@ -13,7 +13,7 @@ This is the implementation of [BabyAI++ : Towards Grounded-Language Learning bey
 ## Introduction
 Although recent works have shown the benefits of instructive texts in goal-conditioned RL, few have studied whether descriptive texts help agents to generalize across dynamic environments. To promote research in this direction, we introduce a new platform, BabyAI++, to generate various dynamic environments along with corresponding descriptive texts (see following Table).
 
-| <img width=300/>Environments                   | Instructive Text   | Descriptive Text   | State Manipulation | Variable Dynamics  | Procedural Envs    | Multi-task         |
+| <img width=290/>Environments                   | Instructive Text   | Descriptive Text   | State Manipulation | Variable Dynamics  | Procedural Envs    | Multi-task         |
 |----------------------------------|:------------------:|:------------------:|:------------------:|:------------------:|:------------------:|:------------------:|
 | [Kolve et al. (2017)](https://arxiv.org/abs/1712.05474)              | :x:                | :x:                | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                |
 | [Narasimhan et al. (2017)](https://arxiv.org/abs/1708.00133)         | :heavy_check_mark: | :x:                | :x:                | :x:                | :heavy_check_mark: | :x:                |
