@@ -1,4 +1,4 @@
-# BabyAI++ : Towards Grounded-Language Learning beyond Memorization
+# BabyAI++
 This is the implementation of [BabyAI++ : Towards Grounded-Language Learning beyond Memorization](https://arxiv.org/pdf/2004.07200.pdf), as described in the following ICLR2020 [BeTR-RL](http://www.betr-rl.ml/2020/) workshop paper. 
 
 ```
