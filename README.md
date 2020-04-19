@@ -47,5 +47,36 @@ Play a level in BabyAI++:
 ```
 python experiment/gui.py --env="BabyAI-Level_GoToObj_Dynamics_Train-v0"
 ```
-To train a model in BabyAI++, see `scripts/train_film_agent_redball.sh` and `experiment/train_rl.py`.
- 
+To train a model in BabyAI++, see `scripts/train_film_agent_redball.sh` and `experiment/train_rl.py`. 
+
+## BabyAI++ Levels
+Please refer to [`babyaiPP/dynamics_levels.py`](https://github.com/caotians1/BabyAIPlusPlus/blob/master/babyaiPP/dynamics_levels.py) and [`babyaiPP/additional_levels.py`](https://github.com/caotians1/BabyAIPlusPlus/blob/master/babyaiPP/additional_levels.py) for the definition of supported levels. The following table lists the available environments of BabyAI++ currently.
+
+![babyai_levels](https://github.com/caotians1/BabyAIPlusPlus/blob/master/babyai_levels.png )
+
+
+## Custom BabyAI++ Levels
+You could also define your own environments with descriptive texts and varying dynamics. Here is an example for creating `PutNextLocalDynamics_Medium` examples:
+```
+# define dynamics setting
+class Level_PutNextDynamics_Medium_Train(DynamicsLevel, Level_PutNext):
+    def __init__(self, seed=None, with_instruction=True):
+        DynamicsLevel.__init__(self, enabled_properties=[0, 1, 2, 3, 4, 5], n_floor_colors=2,
+                               held_out_cp_pairs=[('green', 0), ('green', 2), ('green', 4),
+                                                  ('blue', 1), ('blue', 3), ('blue', 5)],
+                               with_instruction=with_instruction)
+        Level_PutNext.__init__(self, room_size=11, seed=seed)
+
+class Level_PutNextDynamics_Medium_Test(DynamicsLevel, Level_PutNext):
+    def __init__(self, seed=None, with_instruction=True):
+        DynamicsLevel.__init__(self, enabled_properties=[0, 1, 2, 3, 4, 5], n_floor_colors=2,
+                               with_instruction=with_instruction)
+        Level_PutNext.__init__(self, room_size=11, seed=seed)
+        
+# register your environment
+register_levels(__name__, {'Level_PutNextDynamics_Medium_Train': Level_PutNextDynamics_Medium_Train})
+```
+Note that you could augument any levels supported in [BabyAI platform](https://github.com/mila-iqia/babyai) with varying dynamics and descriptive texts by inheriting `DynamicsLevel`.
+
+## Questions/Bugs
+Please submit a Github issue or contact jcao@cs.toronto.edu or wangjk@cs.toronto.edu if you have any questions or find any bugs. Contributions to this repository (e.g., pull requests for other baselines) are also well welcomed.
