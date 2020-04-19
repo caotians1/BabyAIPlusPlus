@@ -5,7 +5,7 @@ This is the implementation of [BabyAI++ : Towards Grounded-Language Learning bey
 @inproceedings{cao2020babiai++,
   title={BabyAI++ : Towards Grounded-Language Learning beyond Memorization},
   author={Cao, Tianshi and Wang, Jingkang and Zhang, Yining and Manivasagam, Sivabalan},
-  booktitle={AAAI},
+  booktitle={ICLR},
   year={2020}
 }
 ```
