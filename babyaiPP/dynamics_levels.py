@@ -69,7 +69,7 @@ class DynamicsLevel(RoomGridLevel):
             self.color_property_map = {}
             self.color_property_map_fixed = {}
         else:
-            self.color_property_map = color_property_map
+            self.color_property_map = {} #color_property_map
             self.color_property_map_fixed = color_property_map.copy()
             self.fixed_color_prop_map = True
         self.held_description = held_description
@@ -101,6 +101,7 @@ class DynamicsLevel(RoomGridLevel):
         # TODO(lts): Hold some out for test.
         if len(self.color_property_map_fixed) > 0 and self.fixed_color_prop_map:
             # determine which colors are to be used
+            self.color_property_map = {}
             color_keys = [c for c in self.color_property_map_fixed.keys()]
             inds = np.arange(len(color_keys))
             self.np_random.shuffle(inds)
@@ -468,6 +469,7 @@ class Level_GoToRedBall_Maze(RoomGridLevel):
 
     def gen_mission(self):
         self.place_agent()
+        self.connect_all()
         i = self.np_random.randint(3)
         j = self.np_random.randint(3)
         obj, _ = self.add_object(i, j, 'ball', 'red')
@@ -577,7 +579,7 @@ class Level_PutNextDynamics_Train(DynamicsLevel, Level_PutNext):
     def __init__(self, seed=None, with_instruction=True):
         DynamicsLevel.__init__(self, enabled_properties=[0, 3, 4], n_floor_colors=2,
                                held_out_cp_pairs=[('green', 0), ('blue', 4)], with_instruction=with_instruction)
-        Level_PutNext.__init__(self, room_size=8, num_objs=4, seed=seed)
+        Level_PutNext.__init__(self, room_size=8, seed=seed)
 
 
 class Level_PutNextDynamics_TargetPairOnly(DynamicsLevel, Level_PutNext):
@@ -585,13 +587,13 @@ class Level_PutNextDynamics_TargetPairOnly(DynamicsLevel, Level_PutNext):
         DynamicsLevel.__init__(self, enabled_properties=[0, 3, 4], n_floor_colors=2,
                                color_property_map={'green': ['trap', ],
                                                    'blue': ['slippery', ]}, with_instruction=with_instruction)
-        Level_PutNext.__init__(self, room_size=8, num_objs=4, seed=seed)
+        Level_PutNext.__init__(self, room_size=8, seed=seed)
 
 
 class Level_PutNextDynamics_Test(DynamicsLevel, Level_PutNext):
     def __init__(self, seed=None, with_instruction=True):
         DynamicsLevel.__init__(self, enabled_properties=[0, 3, 4], n_floor_colors=2, with_instruction=with_instruction)
-        Level_PutNext.__init__(self, room_size=8, num_objs=4, seed=seed)
+        Level_PutNext.__init__(self, room_size=8, seed=seed)
 
 register_levels(__name__, {'Level_PutNextDynamics_Train': Level_PutNextDynamics_Train,
                            'Level_PutNextDynamics_TargetPairOnly': Level_PutNextDynamics_TargetPairOnly,
@@ -605,7 +607,7 @@ class Level_PutNextDynamics_Hard_Train(DynamicsLevel, Level_PutNext):
                                held_out_cp_pairs=[('green', 0), ('green', 2),
                                                   ('grey', 3), ('grey', 4),
                                                   ('blue', 1), ('blue', 5)], with_instruction=with_instruction, )
-        Level_PutNext.__init__(self, room_size=8, num_objs=4, seed=seed)
+        Level_PutNext.__init__(self, room_size=8, seed=seed)
 
 
 class Level_PutNextDynamics_Hard_TargetPairOnly(DynamicsLevel, Level_PutNext):
@@ -614,14 +616,14 @@ class Level_PutNextDynamics_Hard_TargetPairOnly(DynamicsLevel, Level_PutNext):
                                color_property_map={'green': ['trap', 'flipud'],
                                                    'grey': ['fliplr', 'slippery'],
                                                    'blue': ['sticky', 'magic']}, with_instruction=with_instruction,)
-        Level_PutNext.__init__(self, room_size=8, num_objs=4, seed=seed)
+        Level_PutNext.__init__(self, room_size=8, seed=seed)
 
 
 class Level_PutNextDynamics_Hard_Test(DynamicsLevel, Level_PutNext):
     def __init__(self, seed=None, with_instruction=True):
         DynamicsLevel.__init__(self, enabled_properties=[0, 1, 2, 3, 4, 5], n_floor_colors=3,
                                with_instruction=with_instruction, )
-        Level_PutNext.__init__(self, room_size=8, num_objs=4, seed=seed)
+        Level_PutNext.__init__(self, room_size=8, seed=seed)
 
 register_levels(__name__, {'Level_PutNextDynamics_Hard_Train': Level_PutNextDynamics_Hard_Train,
                            'Level_PutNextDynamics_Hard_TargetPairOnly': Level_PutNextDynamics_Hard_TargetPairOnly,
