@@ -452,8 +452,8 @@ register_levels(__name__, {'Level_GoTo_RedBallDynamics_Hard_Train': Level_GoTo_R
                            'Level_GoTo_RedBallDynamics_Hard_Test': Level_GoTo_RedBallDynamics_Hard_Test,
                            'Level_GoTo_RedBallDynamics_Hard_Fixed':Level_GoTo_RedBallDynamics_Hard_Fixed
                            })
-# Goto Redball dynamic maze
 
+# Goto Redball dynamic maze
 class Level_GoToRedBall_Maze(RoomGridLevel):
     """
     Go to the red ball, 3x3 rooms, without distractors.
@@ -530,14 +530,13 @@ class Level_GoTo_RedBallDynamics_Maze_Fixed(DynamicsLevel, Level_GoToRedBall_Maz
                                with_instruction=with_instruction, )
         Level_GoToRedBall_Maze.__init__(self, seed)
 
-
 register_levels(__name__, {'Level_GoTo_RedBallDynamics_Maze_Train': Level_GoTo_RedBallDynamics_Maze_Train,
                            'Level_GoTo_RedBallDynamics_Maze_TargetPairOnly': Level_GoTo_RedBallDynamics_Maze_TargetPairOnly,
                            'Level_GoTo_RedBallDynamics_Maze_Test': Level_GoTo_RedBallDynamics_Maze_Test,
                            'Level_GoTo_RedBallDynamics_Maze_Fixed':Level_GoTo_RedBallDynamics_Maze_Fixed
                            })
-# Put Next Local Dynamic
 
+# Put Next Local Dynamic
 class Level_PutNextLocalDynamics_Train(DynamicsLevel, Level_PutNextLocal):
     def __init__(self, seed=None, with_instruction=True):
         DynamicsLevel.__init__(self, enabled_properties=[0, 3, 4], n_floor_colors=2,
@@ -573,8 +572,8 @@ register_levels(__name__, {'Level_PutNextLocalDynamics_Train': Level_PutNextLoca
                            'Level_PutNextLocalDynamics_Test': Level_PutNextLocalDynamics_Test,
                            'Level_PutNextLocalDynamics_Fixed': Level_PutNextLocalDynamics_Fixed
                            })
-# Put Next to Dynamic
 
+# Put Next to Dynamic
 class Level_PutNextDynamics_Train(DynamicsLevel, Level_PutNext):
     def __init__(self, seed=None, with_instruction=True):
         DynamicsLevel.__init__(self, enabled_properties=[0, 3, 4], n_floor_colors=2,
@@ -599,8 +598,8 @@ register_levels(__name__, {'Level_PutNextDynamics_Train': Level_PutNextDynamics_
                            'Level_PutNextDynamics_TargetPairOnly': Level_PutNextDynamics_TargetPairOnly,
                            'Level_PutNextDynamics_Test': Level_PutNextDynamics_Test,
                            })
-#  Put Next to Dynamic Hard
 
+#  Put Next to Dynamic Hard
 class Level_PutNextDynamics_Hard_Train(DynamicsLevel, Level_PutNext):
     def __init__(self, seed=None, with_instruction=True):
         DynamicsLevel.__init__(self, enabled_properties=[0, 1, 2, 3, 4, 5], n_floor_colors=3,
@@ -672,7 +671,6 @@ register_levels(__name__, {'Level_GoToObjMaze_Dynamics_Train': Level_GoToObjMaze
 
 
 # Goto local Dynamic
-
 class Level_GoToLocal_Dynamics_Train(DynamicsLevel, Level_GoToLocal):
     def __init__(self,
                  seed=None,
@@ -707,7 +705,6 @@ register_levels(__name__, {'Level_GoToLocal_Dynamics_Train': Level_GoToLocal_Dyn
                            })
 
 # Goto Dynamic
-
 class Level_GoTo_Dynamics_Train(DynamicsLevel, Level_GoTo):
     def __init__(self,
                  seed=None,
@@ -747,7 +744,6 @@ register_levels(__name__, {'Level_GoTo_Dynamics_Train': Level_GoTo_Dynamics_Trai
 
 
 # Goto Dynamic Hard
-
 class Level_GoTo_Dynamics_Hard_Train(DynamicsLevel, Level_GoTo):
     def __init__(self,
                  seed=None,
@@ -861,7 +857,6 @@ register_levels(__name__, {'Level_Unlock_Dynamic_Train': Level_Unlock_Dynamic_Tr
 
 
 # Pickup Location Dynamic
-
 class Level_PickupLoc_Dynamic_Train(DynamicsLevel, Level_PickupLoc):
     def __init__(self,
                  seed=None
@@ -908,7 +903,6 @@ register_levels(__name__, {'Level_PickupLoc_Dynamic_Train': Level_PickupLoc_Dyna
 
 
 # Goto Sequential Dynamic
-
 class Level_GotoSeq_Dynamic_Train(DynamicsLevel, Level_GoToSeq):
     def __init__(self,
                  seed=None
