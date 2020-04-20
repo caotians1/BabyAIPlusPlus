@@ -39,7 +39,7 @@ Install `gym-minigrid` and `babyai`:
 cd gym-minigrid
 pip install --editable .
 cd ../babyai
-pip install --no_deps --editable .
+pip install --no-deps --editable .
 ```
 
 ## Using BabyAI++
