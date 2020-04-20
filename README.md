@@ -56,7 +56,7 @@ Please refer to [`babyaiPP/dynamics_levels.py`](https://github.com/caotians1/Bab
 
 
 ## Customize BabyAI++ Levels
-You could also define your own environments with descriptive texts and varying dynamics. Here is an example for creating `PutNextLocalDynamics_Medium` examples:
+You could also define your own environments with descriptive texts and varying dynamics. Here is an example for creating `PutNextLocalDynamics_Medium` Level:
 ```
 # define dynamics setting
 class Level_PutNextDynamics_Medium_Train(DynamicsLevel, Level_PutNext):
