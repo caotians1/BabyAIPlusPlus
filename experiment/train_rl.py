@@ -5,6 +5,9 @@ Script to train the agent through reinforcment learning.
 """
 
 import os
+import sys
+sys.path.append(os.getcwd())
+
 import logging
 import csv
 import json
