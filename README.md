@@ -45,7 +45,7 @@ pip install --no_deps --editable .
 ## Using BabyAI++
 Play a level in BabyAI++:
 ```
-python experiment/gui.py --env="BabyAI-Level_GoToObj_Dynamics_Train-v0"
+python experiment/bAIPlusgui.py --env="BabyAI-GoTo_Dynamics_Train-v0"
 ```
 To train a model in BabyAI++, see `scripts/train_film_agent_redball.sh` and `experiment/train_rl.py`. 
 

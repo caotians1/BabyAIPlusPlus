@@ -4,10 +4,9 @@ Quick script to register babyAI++ levels before passing to babyAI gui.
 
 import sys
 import os
-import babyaiPP
-os.getcwd()
+sys.path.append(os.getcwd())
 sys.path.append(os.path.join(os.getcwd(),"babyai/scripts"))
-sys.path
+import babyaiPP
 import gui
 
 if __name__ == '__main__':
