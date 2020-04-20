@@ -11,7 +11,7 @@ This is the implementation of [BabyAI++ : Towards Grounded-Language Learning bey
 ```
 
 ## Introduction
-Although recent works have shown the benefits of instructive texts in goal-conditioned RL, few have studied whether descriptive texts help agents to generalize across dynamic environments. To promote research in this direction, we introduce a new platform, BabyAI++, to generate various dynamic environments along with corresponding descriptive texts (see following Table).
+Although recent works have shown the benefits of instructive texts in goal-conditioned RL, few have studied whether descriptive texts help agents to generalize across dynamic environments. To promote research in this direction, we introduce a new platform BabyAI++, to generate various dynamic environments along with corresponding descriptive texts (see following Table). Experiments on BabyAI++ show strong evidence that using descriptive texts improves the generalization of RL agents across environments with varied dynamics.
 
 | <img width=290/>Environments                   | Instructive Text   | Descriptive Text   | State Manipulation | Variable Dynamics  | Procedural Envs    | Multi-task         |
 |----------------------------------|:------------------:|:------------------:|:------------------:|:------------------:|:------------------:|:------------------:|
@@ -55,7 +55,7 @@ Please refer to [`babyaiPP/dynamics_levels.py`](https://github.com/caotians1/Bab
 ![babyai_levels](https://github.com/caotians1/BabyAIPlusPlus/blob/master/babyai_levels.png )
 
 
-## Custom BabyAI++ Levels
+## Customize BabyAI++ Levels
 You could also define your own environments with descriptive texts and varying dynamics. Here is an example for creating `PutNextLocalDynamics_Medium` examples:
 ```
 # define dynamics setting
