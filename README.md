@@ -16,7 +16,7 @@ Although recent works have shown the benefits of instructive texts in goal-condi
 | <img width=290/>Environments                   | Instructive Text   | Descriptive Text   | State Manipulation | Variable Dynamics  | Procedural Envs    | Multi-task         |
 |----------------------------------|:------------------:|:------------------:|:------------------:|:------------------:|:------------------:|:------------------:|
 | [Kolve et al. (2017)](https://arxiv.org/abs/1712.05474)              | :x:                | :x:                | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                |
-| [Narasimhan et al. (2017)](https://arxiv.org/abs/1708.00133)         | :heavy_check_mark: | :x:                | :x:                | :x:                | :heavy_check_mark: | :x:                |
+| [Narasimhan et al. (2017)](https://arxiv.org/abs/1708.00133)         | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                | :heavy_check_mark: | :x:                |
 | [Wu et al. (2018)](https://arxiv.org/abs/1801.02209)                 | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                | :x:                |
 | [Chaplot et al. (2018)](https://arxiv.org/abs/1706.07230)            | :heavy_check_mark: | :x:                | :x:                | :x:                | :heavy_check_mark: | :x:                |
 | [Chevalier-Boisvert et al. (2019)](https://arxiv.org/abs/1810.08272) | :heavy_check_mark: | :x:                | :heavy_check_mark: | :x:                | :heavy_check_mark: | :heavy_check_mark: |
