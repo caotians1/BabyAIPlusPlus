@@ -44,12 +44,12 @@ class ExpertControllerFiLM(nn.Module):
 class ACModel(nn.Module, babyai.rl.RecurrentACModel):
     def __init__(self, obs_space, action_space,
                  image_dim=128, memory_dim=128, instr_dim=128,
-                 use_instr=False, lang_model="gru", use_memory=False, arch="cnn",
+                 use_desc=True, lang_model="gru", use_memory=False, arch="cnn",
                  aux_info=None, random_shuffled=False, instr_sents=2, enable_instr=False, instr_only=False):
         super().__init__()
 
         # Decide which components are enabled
-        self.use_instr = use_instr
+        self.use_desc = use_desc
         self.use_memory = use_memory
         self.random_shuffled = random_shuffled
         self.enable_instr = enable_instr
@@ -76,7 +76,7 @@ class ACModel(nn.Module, babyai.rl.RecurrentACModel):
                 nn.MaxPool2d(kernel_size=(2, 2), stride=2)
             )
         elif arch.startswith("expert_filmcnn"):
-            if not self.use_instr:
+            if not self.use_desc:
                 raise ValueError("FiLM architecture can be used when instructions are enabled")
 
             self.image_conv = nn.Sequential(
@@ -91,7 +91,7 @@ class ACModel(nn.Module, babyai.rl.RecurrentACModel):
             )
             self.film_pool = nn.MaxPool2d(kernel_size=(2, 2), stride=2)
         elif arch == "fusion":
-            if not self.use_instr:
+            if not self.use_desc:
                 raise ValueError("fusion architecture can be used when instructions are enabled")
             
             self.image_conv = nn.Sequential(
@@ -119,7 +119,7 @@ class ACModel(nn.Module, babyai.rl.RecurrentACModel):
             raise ValueError("Incorrect architecture name: {}".format(arch))
 
         # Define instruction embedding
-        if self.use_instr:
+        if self.use_desc:
             if self.lang_model in ['gru', 'bigru', 'attgru']:
                 self.word_embedding = nn.Embedding(obs_space["instr"], self.instr_dim)
                 if self.lang_model in ['gru', 'bigru', 'attgru']:
@@ -146,7 +146,7 @@ class ACModel(nn.Module, babyai.rl.RecurrentACModel):
 
         # Resize image embedding
         self.embedding_size = self.semi_memory_size
-        if self.use_instr and not "filmcnn" in arch and not "fusion" in arch:
+        if self.use_desc and not "filmcnn" in arch and not "fusion" in arch:
             self.embedding_size += self.final_instr_dim
 
         if arch.startswith("expert_filmcnn") or (self.arch == "fusion" and self.enable_instr):
@@ -236,13 +236,13 @@ class ACModel(nn.Module, babyai.rl.RecurrentACModel):
         return self.memory_dim
 
     def forward(self, obs, memory, instr_embedding=None):
-        if self.use_instr and instr_embedding is None:
+        if self.use_desc and instr_embedding is None:
             if self.enable_instr and self.arch == "fusion":
                 instr_embedding, instr_embedding2 = self._get_instr_embedding(obs.instr)
             else:
                 instr_embedding = self._get_instr_embedding(obs.instr)
         
-        if self.use_instr and self.lang_model == "attgru":
+        if self.use_desc and self.lang_model == "attgru":
             # outputs: B x L x D
             # memory: B x M
             mask = (obs.instr != 0).float()
@@ -288,7 +288,7 @@ class ACModel(nn.Module, babyai.rl.RecurrentACModel):
         else:
             embedding = x
 
-        if self.use_instr and not "filmcnn" in self.arch and not "fusion" in self.arch:
+        if self.use_desc and not "filmcnn" in self.arch and not "fusion" in self.arch:
             embedding = torch.cat((embedding, instr_embedding), dim=1)
 
         if hasattr(self, 'aux_info') and self.aux_info:
@@ -387,4 +387,4 @@ class ACModel(nn.Module, babyai.rl.RecurrentACModel):
             return outputs if self.lang_model == 'attgru' else final_states
 
         else:
-            ValueError("Undefined instruction architecture: {}".format(self.use_instr))
+            ValueError("Undefined instruction architecture: {}".format(self.use_desc))

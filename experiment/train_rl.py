@@ -63,7 +63,7 @@ n_floor_colors = envs[0].n_floor_colors
 
 # Define model name
 suffix = datetime.datetime.now().strftime("%y-%m-%d-%H-%M-%S")
-instr = args.instr_arch if not args.no_instr else "noinstr"
+instr = args.instr_arch if not args.no_desc else "nodesc"
 rand = "rand" if args.random_shuffle else "order"
 if args.enable_instr:
     if args.instr_only: texts = "instrtexts"
@@ -104,7 +104,7 @@ if acmodel is None:
     else:
         acmodel = ACModel(obss_preprocessor.obs_space, envs[0].action_space,
                           args.image_dim, args.memory_dim, args.instr_dim,
-                          not args.no_instr, args.instr_arch, not args.no_mem, args.arch,
+                          not args.no_desc, args.instr_arch, not args.no_mem, args.arch,
                           random_shuffled=args.random_shuffle, instr_sents=n_floor_colors,
                           enable_instr=args.enable_instr, instr_only=args.instr_only)
 
