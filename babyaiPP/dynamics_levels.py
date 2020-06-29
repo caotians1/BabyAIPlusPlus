@@ -349,8 +349,9 @@ class DynamicsLevel(RoomGridLevel):
             self.tile_time += 1
 
         # Previous color
-        if self.last_color != self.get_floor_color(*self.agent_pos):
-            self.last_color = self.get_floor_color(*self.agent_pos)
+        if (self.last_color != self.agent_pos).all():
+            #self.last_color = self.get_floor_color(*self.agent_pos)
+            self.last_color = self.agent_pos
             self.color_time = 0
         else:
             self.color_time += 1
