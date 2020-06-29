@@ -2,6 +2,4 @@
 	path = gym-minigrid
 	url = https://github.com/caotians1/gym-minigrid.git
 	branch = master
-[submodule "babyai"]
-	path = babyai
-	url = https://github.com/mila-iqia/babyai.git
+
