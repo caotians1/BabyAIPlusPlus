@@ -4,6 +4,10 @@
 Evaluate a trained model or bot
 """
 
+import os
+import sys
+sys.path.append(os.getcwd())
+
 import argparse
 import gym
 import time
