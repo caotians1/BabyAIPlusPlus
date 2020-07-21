@@ -306,7 +306,6 @@ class ACModel(nn.Module, babyai.rl.RecurrentACModel):
 
     def _get_instr_embedding(self, instr):
         # filtering the "go to the red ball"
-        # TODO: [tested in the BabyAI-GoTo_RedBallDynamics, BabyAI-GoTo_RedBallDynamics_Hard]
         if not self.enable_instr:
             instr = instr[:,instr.size()[1] - 4 * self.instr_sents:]
         if self.instr_only:

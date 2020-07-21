@@ -147,7 +147,7 @@ else:
 
 header = (["update", "episodes", "frames", "FPS", "duration"]
           + ["return_" + stat for stat in ['mean', 'std', 'min', 'max']]
-          + ["success_rate" + stat for stat in ['mean', 'std']]
+          + ["success_rate_" + stat for stat in ['mean', 'std']]
           + ["num_frames_" + stat for stat in ['mean', 'std', 'min', 'max']]
           + ["entropy", "value", "policy_loss", "value_loss", "loss", "grad_norm"])
 if args.tb:
