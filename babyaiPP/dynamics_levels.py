@@ -245,7 +245,7 @@ class DynamicsLevel(RoomGridLevel):
                             # succesfully placed floor
                             break
                 except RecursionError:
-                    print("room %d %d too full" % (i, j))
+                    # print("room %d %d too full" % (i, j))
                     continue
             elif f >= 1 - sum(Spawn_rates[:2]) and n_color_1 > 0:
                 c = self._rand_int(0, n_color_1)
@@ -275,7 +275,7 @@ class DynamicsLevel(RoomGridLevel):
                             # succesfully placed floor
                             break
                 except RecursionError:
-                    print("room %d %d too full" % (i, j))
+                    # print("room %d %d too full" % (i, j))
                     continue
 
             elif f >= 1 - sum(Spawn_rates[:3]) and n_color_2 > 0:
@@ -285,7 +285,7 @@ class DynamicsLevel(RoomGridLevel):
                 try:
                     self.place_in_room(i, j, Floor(level_2_cp[c][1]))
                 except RecursionError:
-                    print("room %d %d too full" % (i, j))
+                    # print("room %d %d too full" % (i, j))
                     continue
 
     def get_floor_color(self, i, j):

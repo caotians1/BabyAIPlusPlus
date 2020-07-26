@@ -35,8 +35,8 @@ class ArgumentParser(argparse.ArgumentParser):
                             help="number of frames of training (default: 9e10)")
         self.add_argument("--patience", type=int, default=100,
                             help="patience for early stopping (default: 100)")
-        # self.add_argument("--epochs", type=int, default=1000000,
-        #                     help="maximum number of epochs")
+        self.add_argument("--epochs", type=int, default=40,
+                            help="maximum number of epochs")
         self.add_argument("--epoch-length", type=int, default=0,
                             help="number of examples per epoch; the whole dataset is used by if 0")
         self.add_argument("--frames-per-proc", type=int, default=40,

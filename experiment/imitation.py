@@ -121,7 +121,8 @@ class ImitationLearning(object):
 
         # Define model name
         suffix = datetime.datetime.now().strftime("%y-%m-%d-%H-%M-%S")
-        instr = args.instr_arch if args.instr_arch else "noinstr"
+        # instr = args.instr_arch if args.instr_arch else "noinstr"
+        instr = args.instr_arch if not args.no_desc else "nodesc"
         model_name_parts = {
             'envs': named_envs,
             'arch': args.arch,
