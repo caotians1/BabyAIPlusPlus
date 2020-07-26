@@ -93,7 +93,37 @@ class ACModel(nn.Module, babyai.rl.RecurrentACModel):
         elif arch == "fusion":
             if not self.use_desc:
                 raise ValueError("fusion architecture can be used when instructions are enabled")
-            
+
+            self.image_conv = nn.Sequential(
+                nn.Conv2d(in_channels=3, out_channels=128, kernel_size=(3, 3), padding=1),
+                nn.BatchNorm2d(128),
+                nn.ReLU(),
+                # nn.MaxPool2d(kernel_size=(2, 2), stride=2),
+                nn.Conv2d(in_channels=128, out_channels=128, kernel_size=(3, 3), padding=1),
+                nn.BatchNorm2d(128),
+                nn.ReLU(),
+                # nn.MaxPool2d(kernel_size=(2, 2), stride=2)
+            )
+            self.w_conv = nn.Sequential(
+                nn.Conv2d(in_channels=3, out_channels=128, kernel_size=(3, 3), padding=1),
+                nn.BatchNorm2d(128),
+                nn.ReLU(),
+                nn.Conv2d(in_channels=128, out_channels=128, kernel_size=(3, 3), padding=1),
+                nn.BatchNorm2d(128),
+                nn.ReLU(),
+                nn.Conv2d(in_channels=128, out_channels=self.instr_sents+1, kernel_size=(3, 3), padding=1)
+            )
+            self.combined_conv = nn.Sequential(
+                nn.Conv2d(in_channels=256, out_channels=128, kernel_size=(2, 2)),
+                nn.ReLU(),
+                nn.MaxPool2d(kernel_size=(2, 2), stride=2),
+                nn.Conv2d(in_channels=128, out_channels=128, kernel_size=(2, 2)),
+                nn.ReLU(),
+                nn.Conv2d(in_channels=128, out_channels=128, kernel_size=(2, 2)),
+                nn.ReLU()
+            ) 
+
+            '''
             self.image_conv = nn.Sequential(
                 nn.Conv2d(in_channels=3, out_channels=128, kernel_size=(3, 3), padding=1),
                 nn.BatchNorm2d(128),
@@ -114,7 +144,7 @@ class ACModel(nn.Module, babyai.rl.RecurrentACModel):
                 nn.Conv2d(in_channels=128, out_channels=128, kernel_size=(2, 2)),
                 nn.ReLU()
             ) 
-
+            '''
         else:
             raise ValueError("Incorrect architecture name: {}".format(arch))
 
@@ -260,14 +290,24 @@ class ACModel(nn.Module, babyai.rl.RecurrentACModel):
                 x = controler(x, instr_embedding)
             x = F.relu(self.film_pool(x))
         elif self.arch == "fusion":
+            # old fusion model
+            '''
             x = self.image_conv(x)
             w = self.w_conv(x)
             N,_,W,H = w.shape
             w = w.view([N, self.instr_sents, -1])
             w = F.softmax(w,dim=1)
             y = torch.matmul(instr_embedding, w).view([N, 128, W, H])
+            '''
+            # new fusion model: separate cnns for image extractor and attention module input
+            x_feat = self.image_conv(x)
+            w = self.w_conv(x)
+            N,_,W,H = w.shape
+            w = w.view([N, self.instr_sents + 1, -1])
+            w = F.softmax(w, dim=1)
+            y = torch.matmul(instr_embedding, w[:,:-1]).view([N, 128, W, H])
 
-            x = torch.cat([x, y], axis=1)
+            x = torch.cat([x_feat, y], axis=1)
             x = self.combined_conv(x)
             x = x.view(x.shape[0], x.shape[1], 1, 1)
             if self.enable_instr:
