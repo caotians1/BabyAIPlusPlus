@@ -111,7 +111,8 @@ class ACModel(nn.Module, babyai.rl.RecurrentACModel):
                 nn.Conv2d(in_channels=128, out_channels=128, kernel_size=(3, 3), padding=1),
                 nn.BatchNorm2d(128),
                 nn.ReLU(),
-                nn.Conv2d(in_channels=128, out_channels=self.instr_sents+1, kernel_size=(3, 3), padding=1)
+                # nn.Conv2d(in_channels=128, out_channels=self.instr_sents+1, kernel_size=(3, 3), padding=1)
+                nn.Conv2d(in_channels=128, out_channels=self.instr_dim, kernel_size=(3, 3), padding=1)
             )
             self.combined_conv = nn.Sequential(
                 nn.Conv2d(in_channels=256, out_channels=128, kernel_size=(2, 2)),
@@ -300,12 +301,20 @@ class ACModel(nn.Module, babyai.rl.RecurrentACModel):
             y = torch.matmul(instr_embedding, w).view([N, 128, W, H])
             '''
             # new fusion model: separate cnns for image extractor and attention module input
+            # x_feat = self.image_conv(x)
+            # w = self.w_conv(x)
+            # N,_,W,H = w.shape
+            # w = w.view([N, self.instr_sents + 1, -1])
+            # w = F.softmax(w, dim=1)
+            # y = torch.matmul(instr_embedding, w[:,:-1]).view([N, 128, W, H])
+
+            # Attention where key=value
             x_feat = self.image_conv(x)
-            w = self.w_conv(x)
-            N,_,W,H = w.shape
-            w = w.view([N, self.instr_sents + 1, -1])
-            w = F.softmax(w, dim=1)
-            y = torch.matmul(instr_embedding, w[:,:-1]).view([N, 128, W, H])
+            query = self.w_conv(x)
+            N,_,W,H = query.shape
+            query = query.view([N, self.instr_dim, -1])
+            weights = F.softmax(torch.matmul(instr_embedding.transpose(1,2), query), dim=1)
+            y = torch.matmul(instr_embedding, weights).view([N, 128, W, H])
 
             x = torch.cat([x_feat, y], axis=1)
             x = self.combined_conv(x)
